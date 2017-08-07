@@ -1,5 +1,5 @@
 # Brownian Motion
 
-This repo contains the code for the shiny app which simulates Brownian motion.
+This repo contains the code for the shiny app which simulates Brownian motions.
 
 https://mrsnake.shinyapps.io/BrownianMotion/
