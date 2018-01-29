@@ -2,4 +2,4 @@
 
 This repo contains the code for the shiny app which simulates Brownian motions.
 
-https://mrsnake.shinyapps.io/BrownianMotion/
+https://abichat.shinyapps.io/BrownianMotion/
