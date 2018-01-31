@@ -11,7 +11,7 @@ brown <- function(nsamples, step, Tmax, B0 = 0, m = 0, s = 1){
   df <- cbind(df, M)
   df[1, 2:(1+nsamples)] <- B0
   for(i in 2:nrow(df)){
-      df[i, 2:(nsamples+1)] <- df[i-1,2:(nsamples+1)] + sqrt(step)*rnorm(n=nsamples, mean = m, sd = s)
+      df[i, 2:(nsamples+1)] <- df[i-1,2:(nsamples+1)] + sqrt(step)*rnorm(n=nsamples, mean = sqrt(step)*m, sd = s)
   }
   df %<>%
     gather(Sample, B, 2:(nsamples+1))
