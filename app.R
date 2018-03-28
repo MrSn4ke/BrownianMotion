@@ -1,19 +1,19 @@
 library(shiny)
-library(ggplot2)
-library(tidyr)
-library(magrittr)
+library(tidyverse)
 
 
 brown <- function(nsamples, step, Tmax, B0 = 0, m = 0, s = 1){
+  
   Time <- seq(from = 0, to = Tmax, by = step)
   df <- data.frame(Time)
-  M <- matrix(NA, nrow = length(Time), ncol = nsamples)
-  df <- cbind(df, M)
-  df[1, 2:(1+nsamples)] <- B0
-  for(i in 2:nrow(df)){
-      df[i, 2:(nsamples+1)] <- df[i-1,2:(nsamples+1)] + sqrt(step)*rnorm(n=nsamples, mean = sqrt(step)*m, sd = s)
-  }
-  df %<>%
+  
+  M <- matrix(sqrt(step) * rnorm(n = nsamples * length(Time), mean = sqrt(step) * m, sd = s), 
+              nrow = length(Time), ncol = nsamples)
+  M[1, ] <- B0
+  
+  df <- M %>% 
+    apply(2, cumsum) %>% 
+    cbind(df, .) %>% 
     gather(Sample, B, 2:(nsamples+1))
   return(df)
 }
